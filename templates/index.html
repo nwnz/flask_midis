@@ -4,10 +4,11 @@
 {% extends "base.html" %}
 {% block content %}
 <form method="post">
-<h5>
+    <button name="pics" value="pics">Получи картинку!</button>
+    <h5>
     {% for i in posts %}
 
-    <a href="/{{ a.pop(0) }}" class="button">{{ i }}</a>
+    <button name="post_id" value="{{ i[0] }}">Картринка с котиком</button>
 
     <br>
     <br>
