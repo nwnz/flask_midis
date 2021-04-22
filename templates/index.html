@@ -1,0 +1,18 @@
+<!doctype html>
+<title>Welcome twitter</title>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+<h5>
+    {% for i in posts %}
+
+    <a href="/{{ a.pop(0) }}" class="button">{{ i }}</a>
+
+    <br>
+    <br>
+    {% endfor %}
+</h5>
+</form>
+{% endblock %}
+</body>
