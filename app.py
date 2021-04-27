@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, abort, jsonify, redirect, send_from_directory
+from flask_httpauth import HTTPBasicAuth
 import os
 app = Flask(__name__)
 
@@ -36,16 +37,49 @@ def post_view(post_id):
         abort(418)
 
 
+@app.route('/user/<user_id>', methods=["GET"])
+def get_user_lk(user_id):
+    user_link = {"user_id" : user_id, "lisk_list" : ["www.google.com, www.ya.ru, www.vk.com"]  }
+    return jsonify(user_link)
 
 @app.route('/about', methods=["GET", "POST"])
 def about():
-    return render_template("about.html")
+    return render_template("about.html") , 200
 
 @app.route('/pikabu', methods=["GET"])
 def pikabu():
     return redirect("/about")
 
 
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port="80", debug=True)
 
+
+
+# from flask import Flask
+# from flask_httpauth import HTTPBasicAuth
+# from werkzeug.security import generate_password_hash, check_password_hash
+#
+# app = Flask(__name__)
+# auth = HTTPBasicAuth()
+#
+# users = {
+#     "john": generate_password_hash("hello"),
+#     "susan": generate_password_hash("bye")
+# }
+#
+# @auth.verify_password
+# def verify_password(username, password):
+#     if username in users and \
+#             check_password_hash(users.get(username), password):
+#         return username
+#
+# @app.route('/')
+# @auth.login_required
+# def index():
+#     return "Hello, {}!".format(auth.current_user())
+#
+# if __name__ == '__main__':
+#     app.run()
